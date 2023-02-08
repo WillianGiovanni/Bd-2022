@@ -1,0 +1,48 @@
+ÑN:
+OrgãoSup(CodOrgSup, NomeOrgSup,
+		(CodOrg, NomeOrgao,
+			(CodUnidadeGestora, NomeUnidadeGestora, CodCategoriaEconomica, NomeCategoriaEconomica, OrigemReceita, EspécieReceita, Detalhamento, ValorPrevisto, ValorLançado, ValorRealizado, PercentualRealizado, DataLancamento, AnoExercicio))
+
+
+1FN:
+OrgãoSup(CodOrgSup, NomeOrgSup)
+Orgão(CodOrgSup, CodOrg, NomeOrgao) 
+UnidadeGestora(CodOrg, CodUnidadeGestora, NomeUnidadeGestora, CodCategoriaEconomica, NomeCategoriaEconomica, OrigemReceita, EspécieReceita, Detalhamento, ValorPrevisto, ValorLançado, ValorRealizado, PercentualRealizado, DataLancamento, AnoExercicio) 
+
+
+2FN:
+OrgãoSup(CodOrgSup, NomeOrgSup)
+OrgãoSupOrgão(CodOrgSup, CodOrg)
+Orgão(CodOrg, NomeOrgao)
+OrgãoUnidade(CodOrg, CodUnidadeGestora)
+UnidadeGestora(CodUnidadeGestora, NomeUnidadeGestora)
+UnidadeGestoraCategoria(CodUnidadeGestora, CodCategoriaEconomica)
+CategoriaEconomica(CodCategoriaEconomica, NomeCategoriaEconomica,  OrigemReceita, EspécieReceita, Detalhamento, ValorPrevisto, ValorLançado, ValorRealizado, PercentualRealizado, DataLancamento, AnoExercicio)
+
+
+3FN:
+OrgãoSup(CodOrgSup, NomeOrgSup)
+OrgãoSupOrgão(CodOrgSup, CodOrg)
+Orgão(CodOrg, NomeOrgao)
+OrgãoUnidade(CodOrg, CodUnidadeGestora)
+UnidadeGestora(CodUnidadeGestora, NomeUnidadeGestora)
+UnidadeGestoraCategoria(CodUnidadeGestora, CodCategoriaEconomica)
+CategoriaEconomica(CodCategoriaEconomica, NomeCategoriaEconomica, OrigemReceita,  ValorPrevisto, ValorLançado, ValorRealizado, PercentualRealizado, DataLancamento, AnoExercicio)
+OrigemReceita(OrigemReceita, EspécieReceita)
+EspécieReceita(EspécieReceita, Detalhamento)
+
+4FN:
+Não se Aplica
+
+
+
+Forma Normalizada Final:
+OrgãoSup(CodOrgSup, NomeOrgSup)
+OrgãoSupOrgão(CodOrgSup, CodOrg)
+Orgão(CodOrg, NomeOrgao)
+OrgãoUnidade(CodOrg, CodUnidadeGestora)
+UnidadeGestora(CodUnidadeGestora, NomeUnidadeGestora)
+UnidadeGestoraCategoria(CodUnidadeGestora, CodCategoriaEconomica)
+CategoriaEconomica(CodCategoriaEconomica, NomeCategoriaEconomica, OrigemReceita,  ValorPrevisto, ValorLançado, ValorRealizado, PercentualRealizado, DataLancamento, AnoExercicio)
+OrigemReceita(OrigemReceita, EspécieReceita)
+EspécieReceita(EspécieReceita, Detalhamento)
