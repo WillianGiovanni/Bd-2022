@@ -1,0 +1,44 @@
+INSERT INTO public.especiereceita(
+    codespeciereceita, especiereceita, detalhamento)
+    VALUES (1, 'Demais receitas correntes', 'OUTRAS REC.NAO RFB-PRIM.-DIV.AT-MUL.JUR.'),
+    (2, 'Indenizações, restituições e ressarcimentos', 'OUTRAS RESTITUICOES-PRINCIPAL');
+	
+INSERT INTO public.origemreceita(
+    codorigemreceita, origemreceita)
+    VALUES (1, 'Outras receitas correntes'),
+    (2, 'Receitas de Serviços');
+	
+INSERT INTO public.categoriaeconomica(
+    codcategoriaeconomica, nomecategoriaeconomica, codorigemreceita,
+	valorprevisto, valorlancado, valorrealizado, percentualrealizado, datalancamento, anoexercicio)
+    VALUES (1, 'Receitas Correntes', 1, 0, 0, 175874.03, 0, '18/01/2022', 2022);
+	
+INSERT INTO public.origemespecie(
+	codorigemreceita, especiereceita)
+	VALUES (1, 1), (1, 2);
+	
+INSERT INTO public.unidadegestora(
+    codunidadegestora, nomeunidadegestora)
+    VALUES (173057, 'BANCO CENTRAL DO BRASIL'), (370001, 'DIRETORIA DE GESTAO INTERNA(CGU)');
+	
+INSERT INTO public.orgao(
+    codorgao, nomeorgao)
+    VALUES (37000, 'Controladoria-Geral da União - Unidades com vínculo direto'), 
+	(25201, 'Banco Central do Brasil - Orçamento Fiscal e Seguridade Social - Unidades com vínculo direto');
+	
+INSERT INTO public.orgaosup(
+    codorgaosup, nomeorgaosup)
+    VALUES (1, 'Controladoria-Geral da União'),(25201,'Banco Central do Brasil - Orçamento Fiscal e 
+												Seguridade Social - Unidades com vínculo direto ');
+	
+INSERT INTO public.orgsuporgao(
+    codorgaosup, codorgao)
+    VALUES (1, 37000),(25201,25201);
+	
+INSERT INTO public.orgaounidade(
+    codorgao, codunidadegestora)
+    VALUES (37000, 370001), (25201, 173057);
+
+INSERT INTO public.unidadegestoracategoria(
+    codunidadegestora, codcategoriaeconomica)
+    VALUES (370001, 1),(173057, 1);

@@ -1,0 +1,28 @@
+CREATE VIEW vw_categoria_economica_realizado AS
+SELECT AnoExercicio 
+FROM CategoriaEconomica
+GROUP BY nomeCategoriaEconomica
+HAVING CategoriaEconomica.AnoExercicio = 2022;
+
+CREATE VIEW vw_categoria_economica_realizado_percentual AS
+SELECT ValorRealizado, PercentualRealizado
+    FROM CategoriaEconomica
+    ORDER BY ValorRealizado ASC, PercentualRealizado ASC;
+
+CREATE VIEW vw_categoria_economica_previsto_realizado AS 
+SELECT nomeCategoriaEconomica, ValorPrevisto, ValorRealizado 
+FROM CategoriaEconomica
+WHERE CategoriaEconomica.nomeCategoriaEconomica = 'Receitas Correntes';
+
+CREATE VIEW vw_origem_especie_receita AS
+SELECT * 
+FROM OrigemReceita
+FULL OUTER JOIN EspecieReceita
+ON OrigemReceita.codorigemreceita = EspecieReceita.codespeciereceita;
+
+CREATE VIEW vw_categoria_economica_origem_receita AS
+SELECT CategoriaEconomica.codcategoriaeconomica, CategoriaEconomica.nomecategoriaeconomica, 
+			OrigemReceita.codorigemreceita as codigo_origem, OrigemReceita.origemReceita
+FROM CategoriaEconomica
+RIGHT JOIN OrigemReceita
+ON CategoriaEconomica.codcategoriaeconomica = OrigemReceita.codorigemreceita;
