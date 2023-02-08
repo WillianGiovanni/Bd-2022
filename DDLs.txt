@@ -1,0 +1,39 @@
+CREATE TABLE OrgaoSup
+    (CodOrgaoSup integer, NomeOrgaoSup varchar(255) NOT NULL, PRIMARY KEY (CodOrgaoSup));
+
+CREATE TABLE Orgao
+		(CodOrgao integer, NomeOrgao varchar(255) NOT NULL, PRIMARY KEY (CodOrgao));
+				
+CREATE TABLE UnidadeGestora
+		(CodUnidadeGestora integer, NomeUnidadeGestora varchar(255) NOT NULL, 
+		 PRIMARY KEY (CodUnidadeGestora));
+
+CREATE TABLE OrigemReceita
+		(CodOrigemReceita integer, OrigemReceita varchar(255), PRIMARY KEY (CodOrigemReceita));		
+
+CREATE TABLE EspecieReceita
+		(CodEspecieReceita integer, EspecieReceita varchar(255), 
+		 Detalhamento varchar(255) NOT NULL, PRIMARY KEY (CodEspecieReceita));
+
+CREATE TABLE CategoriaEconomica
+		(CodCategoriaEconomica integer, NomeCategoriaEconomica varchar(255) NOT NULL, 
+		 CodOrigemReceita integer REFERENCES OrigemReceita (CodOrigemReceita) NOT NULL, 
+		 ValorPrevisto real NOT NULL, ValorLancado real NOT NULL, ValorRealizado real NOT NULL, 
+		 PercentualRealizado real NOT NULL, DataLancamento Date NOT NULL, AnoExercicio integer NOT NULL,
+		 PRIMARY KEY (CodCategoriaEconomica));
+         
+CREATE TABLE OrgSupOrgao
+		(CodOrgaoSup integer REFERENCES OrgaoSup (CodOrgaoSup), 
+		 CodOrgao integer REFERENCES Orgao (CodOrgao));	
+
+CREATE TABLE OrgaoUnidade
+		(CodOrgao integer REFERENCES Orgao (CodOrgao), 
+		 CodUnidadeGestora integer REFERENCES UnidadeGestora (CodUnidadeGestora));
+
+CREATE TABLE UnidadeGestoraCategoria
+		(CodUnidadeGestora integer REFERENCES UnidadeGestora (CodUnidadeGestora),
+		CodCategoriaEconomica integer REFERENCES CategoriaEconomica (CodCategoriaEconomica));
+
+CREATE TABLE OrigemEspecie
+		(CodOrigemReceita integer REFERENCES OrigemReceita (CodOrigemReceita),
+		 EspecieReceita integer REFERENCES EspecieReceita (CodEspecieReceita));
